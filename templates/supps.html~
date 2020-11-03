@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head><title>Supplement Dashboard</title></head>
+	<body>
+		<div id="supp_display">{{supps}}</div>
+		<h1>Enter new supplement entry below.</h1>
+		<form method="post" action="/supp">
+		<p>Date<br><input type="text" name="date"></p>
+		<p>Amount<br><input type="number" name="amount"></p>
+		<input type="submit">
+		</form>
+	</body>
+</html>

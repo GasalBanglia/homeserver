@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head><title>Supplement Dashboard</title></head>
+	<body>
+		<h1>Supplement and Feeding Dashboard</h1>
+		<h3>Supplement Feeding Chart</h3>
+		<div id="supp_display" style="overflow:auto; width:500px; height:150px;">
+            <ul id="supplement_log">
+                {% for supp in supps %}
+                    {% module supplement(supp) %}
+                {% end %}
+            </ul>
+        </div>
+
+		<h3>Enter new supplement entry below.</h3>
+		<form method="post" action="/leo/supplements?source=page">
+		<p>Date<br><input type="text" name="date" value="2020-07-"></p>
+		<p>Amount<br><input type="number" name="amount"></p>
+		<input type="submit">
+		</form>
+	</body>
+</html>

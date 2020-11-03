@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script async src="https://unpkg.com/vexflow/releases/vexflow-debug.js"></script>
+    <script src="{{ static_url('index.js')}}" defer></script>
+    <link rel="shortcut icon" href="{{ static_url('favicon.ico') }}">
+    <link async href="https://fonts.googleapis.com/css?family=Playfair Display" 
+          rel="stylesheet">
+    <link rel="stylesheet" href="{{static_url('index.css')}}">
+    <link rel="stylesheet" href="{{static_url('widget.css')}}">
+    <link rel="stylesheet" href="{{static_url('widget.css')}}">
+
+    <title>Gish Flats 114</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1">
+    </head>
+
+    <body onload="renderContent()">
+        <div id="topper">
+
+        </div>
+        <div class="header">
+            <h1>WELCOME TO THE GISH FLATS 114 WEBPAGE</h1>
+            <p>RUSTIC CHARM, MODERN LIVING, STEPS FROM DOWNTOWN</p>
+        </div>
+
+        <div class="navbar">
+            <a href="/Leo">Leo</a>
+            <a href="/Leo/Supplements?source=page">Supplements</a>
+            <span class="right weather" >0&deg;F 0%RH</span>
+        </div>
+
+        <div class="row">
+            <div id="sidebar" class="side">
+            </div>
+            <div class="spacer">
+            </div>
+            <div class="main" id="widget-container">
+                <div class=".row main-widget" id="forecast"><input type="submit" onClick="updateForecast()" value="Fetch Weather"/></div>
+                <div class=".row main-widget" id="notes-of-the-day"></div>
+                <div class="row main-widget" id="react-tutorial"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h2>Footer<?h2>
+        </div>
+
+        <!--
+            Load React.js
+            Note: when deploying, replace "devevlopment.js" with 
+            "production.min.js". 
+
+            These are the 'react' and 'react-dom' modules, respectively.
+          -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+        <!-- Load react components -->
+        <script src="{{ static_url('react/react-tutorial.js') }}"></script>
+        <script type="module" src="{{ static_url('react/WeatherSensors.js') }}"></script>
+        <script type="module" src="{{ static_url('react/WeatherSensorsContainer.js') }}"></script>
+        <script type="module" src="{{ static_url('react/Supplements.js') }}"></script>
+        <script type="module" src="{{ static_url('react/SupplementsContainer.js') }}"></script>
+        <script type="module" src="{{ static_url('react/RecipeView.js') }}"></script>
+        <script type="module" src="{{ static_url('react/RecipeForm.js') }}"></script>
+        <script type="module" src="{{ static_url('react/RecipeContainer.js') }}"></script>
+        <script type="module" src="{{ static_url('react/FavoriteLinks.js') }}"></script>
+        <script type="module" src="{{ static_url('react/FavoriteLinksContainer.js') }}"></script>
+        <script type="module" src="{{ static_url('react/PhotoApp.js') }}"></script>
+        <script type="module" src="{{ static_url('react/PhotoAppContainer.js') }}"></script>
+        <script type="module" src="{{ static_url('react/OurGamesContainer.js') }}"></script>
+        <script type="module" src="{{ static_url('react/OurGamesForm.js') }}"></script>
+        <script type="module" src="{{ static_url('react/OurGamesSelector.js') }}"></script>
+        <script type="module" src="{{ static_url('react/GardenAppContainer.js') }}"></script>
+        <script type="module" src="{{ static_url('react/GardenApp.js') }}"></script>
+        <script type="module" src="{{ static_url('react/WorkoutAppContainer.js') }}"></script>
+        <script type="module" src="{{ static_url('react/WorkoutApp.js') }}"></script>
+        <script type="module" src="{{ static_url('react/topper.js') }}"></script>
+
+
+    </body>
+
+</html>

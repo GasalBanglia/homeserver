@@ -1,0 +1,56 @@
+import tornado.httpserver
+import tornado.ioloop
+import tornado.options
+import tornado.web
+import os
+
+import mysql.connector as mysql
+
+from tornado.options import define, options
+define("port", default=8000, help="run on the given port", type=int)
+
+
+class Application(tornado.web.Application):
+    def __init__(self):
+        handlers = [(r"/supplements", SupplementsHandler)]
+        self.leodb = mysql.connect(
+            host="localhost", user="root", password="test123", database="leo")
+        tornado.web.Application.__init__(self, handlers, debug=True, 
+                template_path=os.path.join(os.path.dirname(__file__), "templates"))
+
+
+class SupplementsHandler(tornado.web.RequestHandler):
+    def get(self):
+        cursor = self.application.leodb.cursor()
+        command = "SELECT * FROM supplements ORDER BY date;"
+        cursor.execute(command)
+        supps = cursor.fetchall()
+        if supps:
+            self.render('supps.html', supps=str(supps))
+        else:
+            self.set_status(404)
+            self.render('supps.html', supps = "No data could be retrieved from the database.")
+                      
+
+    def post(self):
+        date = self.get_argument('date')
+        amount = self.get_argument('amount')
+        cursor = self.application.leodb.cursor()
+        command = "INSERT INTO supplements (date, amount) VALUES ('{}', {});".format(
+            date, amount)
+        cursor.execute(command)
+        cursor.execute("SELECT * FROM supplements;")
+        supps = cursor.fetchall()
+        self.application.leodb.commit()
+        self.render('supps.html', supps=str(supps))
+    
+
+def main():
+    tornado.options.parse_command_line()
+    http_server = tornado.httpserver.HTTPServer(Application())
+    http_server.listen(options.port)
+    tornado.ioloop.IOLoop.instance().start()
+
+
+if __name__ == "__main__":
+    main()
